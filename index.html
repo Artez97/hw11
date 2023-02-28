@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <!--Дан макет сайта https://www.figma.com/file/mnLY69cYE5cqWM5w6n5hXx/Seo-%26-Digital-Marketing-Landing-Page?node-id=190%3A1194&t=q4NMnXTnwyyTSGA6-0
+
+В блоке Featured Items небходимо реализовать шаблон товаров.
+
+Для этого необходимо создать json формат данных по всем товарам.
+
+Из этого файла сформировать блок Featured Items.
+
+Всю вёрстку остальных частей реализовывать не нужно, если у вас она была сделана на html/css можно использовать, заново создавать не требуется.-->
+
+    <main>
+        <h2 class="FeIt">Featured Items</h2>
+        <h3 class="FeItText">
+            Shop for items based on what we featured in this week
+        </h3>
+        <div class="content"></div>
+    </main>
+    <script src="data.js"></script>
+    <script>
+        const data = JSON.parse(dataInfo);
+        console.log(data);
+        const contentEl = document.querySelector(".content");
+
+        const itemsEl = document.createElement("ul");
+        contentEl.appendChild(itemsEl);
+
+        data.forEach((dataElem) => {
+            const liEl = document.createElement("li");
+            liEl.classList.add("itemProduct");
+            itemsEl.appendChild(liEl);
+
+            const aImgEl = document.createElement("a");
+            aImgEl.classList.add("itemProdImg");
+            aImgEl.href = "#";
+            liEl.appendChild(aImgEl);
+
+            const ImgEl = document.createElement("img");
+            ImgEl.classList.add("itemImg");
+            ImgEl.src = dataElem.img;
+            ImgEl.alt = dataElem.title;
+            aImgEl.appendChild(ImgEl);
+
+            const aTitleEl = document.createElement("a");
+            aTitleEl.classList.add("itemTitleContent");
+            aTitleEl.href = "#";
+            aTitleEl.textContent = dataElem.title;
+            liEl.appendChild(aTitleEl);
+
+            const pEl = document.createElement("p");
+            pEl.textContent = dataElem.text;
+            liEl.appendChild(pEl);
+
+            const spanEl = document.createElement("span");
+            spanEl.textContent = "$" + dataElem.price;
+            liEl.appendChild(spanEl);
+
+            const buttonEl = document.createElement("button");
+            buttonEl.classList.add("item_btn");
+            buttonEl.type = "button";
+            liEl.appendChild(buttonEl);
+            // const divEl = document.createElement("div");
+            // divEl.classList.add("first");
+
+            // const titleEl = document.createElement("h2");
+            // titleEl.classList.add("title");
+
+            // const questEl = document.createElement("h2");
+            // questEl.classList.add("text");
+            // questEl.textContent = dataElem.question;
+
+            // const ansEl = document.createElement("h3");
+            // ansEl.classList.add("text");
+            // ansEl.textContent = dataElem.answer;
+
+            // const imgEl = document.createElement("img");
+            // imgEl.classList.add("image");
+            // imgEl.src = dataElem.img_url;
+
+            // contentEl.appendChild(divEl);
+            // divEl.appendChild(titleEl);
+
+            // divEl.appendChild(questEl);
+            // questEl.appendChild(ansEl);
+            // divEl.appendChild(imgEl);
+        });
+    </script>
+</body>
+
+</html>
